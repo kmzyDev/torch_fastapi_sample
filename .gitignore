@@ -7,7 +7,7 @@ wheels/
 *.egg-info
 
 # Model
-assets/l3-elyza
+assets/l3-elyza/*
 
 # Virtual environments
 .venv

@@ -1,14 +1,21 @@
 ## 前置き
 
 オンプレサーバ内で訓練済モデルを動かす場合のサンプルです  
-ubuntu22 系か 24 系での動作を想定しています  
-uv sync  
-uv run dlmodel.py  
-cd src  
-uv run uvicorn main:app --reload --host 0.0.0.0 --port 8080  
+ubuntu22 系か 24 系での動作を想定しています
+
+```
+uv sync
+uv run dlmodel.py
+cd src
+uv run uvicorn main:app --reload --host 0.0.0.0 --port 8080
+```
+
 で API が起動します  
-localhost:8080/hoge に POST するとモデルが GPU で推論して結果を返します 下記は一例  
+localhost:8080/hoge に POST するとモデルが GPU で推論して結果を返します 下記は一例
+
+```
 curl -X 'POST' 'http://localhost:8080/hoge' -H 'Content-Type: application/json' -d '{"prompt": "調子どうですか？"}'
+```
 
 ## 構成モジュール
 

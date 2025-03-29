@@ -1,8 +1,31 @@
 ## 前置き
 
 オンプレサーバ内で訓練済モデルを動かす場合のサンプルです  
-ubuntu22 系か 24 系での動作を想定しています
+https://huggingface.co/elyza/Llama-3-ELYZA-JP-8B を使わせて頂いてます  
+ubuntu22 系か 24 系での動作を想定しています  
+以下の手順に則ってホストマシンにNvidiaのカーネルモジュールをロードする必要があります  
+※実施前にBIOSでのセキュアブート無効化を推奨しています  
+```
+add-apt-repository ppa:graphics-drivers/ppa
+apt update
+ubuntu-drivers devices
+↑recommendedを控えておいてください
+apt install -y recommended_driver
+↑上記で控えたもの
+※ここで ll /usr/src/ | grep nvidia　などでカーネルモジュールのソースが落ちてる旨の確認推奨
+shutdown -r now
+↑再起動と共にカーネルモジュールがロードされ、GPUのデバイスファイルができあがります
+lsmod | grep nvidia
+↑カーネルモジュールのロード確認推奨
+ll /dev/nvidia*
+↑GPU関連デバイスファイルの確認推奨
+systemctl status nvidia-persistenced
+ll /var/run/nvidia-persistenced
+↑デーモン稼働状況の確認推奨
+※必要性があればnvidia-persistencedをvideoグループに追加してください
+```
 
+ここまでできたらあとはモデルを落としてAPIを起動してください
 ```
 uv sync
 uv run dlmodel.py
@@ -10,7 +33,6 @@ cd src
 uv run uvicorn main:app --reload --host 0.0.0.0 --port 8080
 ```
 
-で API が起動します  
 localhost:8080/hoge に POST するとモデルが GPU で推論して結果を返します 下記は一例
 
 ```

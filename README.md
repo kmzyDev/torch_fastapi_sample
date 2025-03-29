@@ -25,7 +25,7 @@ ll /var/run/nvidia-persistenced
 ※必要性があればnvidia-persistencedをvideoグループに追加してください
 ```
 
-ここまでできたらあとはモデルを落としてAPIを起動してください
+あとは以下の手順でモデルを落としてAPIを起動してください
 ```
 uv sync
 uv run dlmodel.py

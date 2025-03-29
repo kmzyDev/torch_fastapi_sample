@@ -27,7 +27,7 @@ ll /var/run/nvidia-persistenced
 
 あとは以下の手順でモデルを落としてAPIを起動してください
 ```
-uv sync
+uv syn
 uv run dlmodel.py
 cd src
 uv run uvicorn main:app --reload --host 0.0.0.0 --port 8080

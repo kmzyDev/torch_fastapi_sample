@@ -6,8 +6,8 @@ dist/
 wheels/
 *.egg-info
 
-# Model
-assets/l3-elyza/*
-
 # Virtual environments
 .venv
+
+# Pre-trained Models
+assets/l3-elyza/*

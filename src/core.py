@@ -10,4 +10,5 @@ def hoge(request: InputParams) -> str:
     with torch.no_grad():
         outputs = model.generate(prompt['input_ids'], max_length=100)
 
+    # 文字列長よりトークン長で切った方が良い説がある...
     return tokenizer.decode(outputs[0], skip_special_tokens=True)[len(request.prompt):].strip()

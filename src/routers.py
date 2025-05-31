@@ -5,6 +5,6 @@ from core import hoge
 
 router = APIRouter()
 
-@router.post("/hoge")
+@router.post('/hoge')
 def hoge_endpoint(request: InputParams) -> str:
     return hoge(request)
